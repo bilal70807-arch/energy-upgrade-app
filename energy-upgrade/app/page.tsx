@@ -103,7 +103,11 @@ export default function Home() {
           notes: form.notes,
         }])
       }
-
+await fetch('/api/notify', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ ...form, owns_building: form.owns_building === 'yes', owns_home: form.owns_home === 'yes' })
+})
       setSubmitted(true)
     } catch (err) {
       console.error(err)
